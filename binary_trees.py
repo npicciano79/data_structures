@@ -34,6 +34,44 @@ class Tree:
                 return False
             else:
                 return self.right.find(data)
+    #inorder traversal
+    def inorder(self):
+        if self is not None:
+            if self.left is not None:
+                self.left.inorder()
+        print(self.data,end=' /')
+        if self.right is not None:
+            self.right.inorder()
+    
+    #preorder traversal
+    def preorder(self):
+        if self is not None:
+            print(self.data,end='-')
+            if self.left is not None:
+                self.left.preorder()
+            if self.right:
+                self.right.preorder()
+
+    def postorder(self):
+        if self is not None:
+            if self.left is not None:
+                self.left.postorder()
+            if self.right is not None:
+                self.right.postorder()
+            print(self.data,end=' ')
+
+
+
+    #get tree size
+    def get_size(self):
+        if self.left is not None and self.right is not None:
+            return 1+self.left.get_size()+self.right.get_size()
+        elif self.left:
+            return 1+self.left.get_size()
+        elif self.right:
+            return 1 + self.right.get_size()
+        else:
+            return 1
 
 
 
@@ -43,7 +81,11 @@ tree=Tree(7)
 tree.create(9)
 for i in vals:
     tree.create(i)
-print(tree.find(12))
+#print(tree.find(12))
+#tree.inorder()
+#tree.preorder()
+tree.postorder()
+#print(tree.get_size())
 
 
 
