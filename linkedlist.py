@@ -74,7 +74,60 @@ class LinkedList:
             curr=curr.next
         
         return sentinel.next
-       
+    
+    def createDict(self):
+        r=self.head
+        dict={}
+        count=0
+        while r:
+            dict[count]=r.data
+            #print(dict.items())
+            r=r.next
+            count+=1
+        for values in dict.keys():
+            print(values)
+        
+        return dict
+    
+    def repeatCheck(self):
+        r=self.head
+        dict={}
+        count=0
+        while r:
+            if r.data not in dict.values():
+                dict[count]=r.data
+                count+=1
+            else:
+                return [key for key,val in dict.items() if val==r.data]
+                #return dict
+                #return r.data
+            r=r.next
+        
+        return -1
+
+    def insertionSort(self,head):
+        dummy=Node(0)
+        dummy.next=head
+
+        prev,cur=head,head.next
+
+        while cur:
+            if cur.val>=prev.val:
+                prev,cur=cur,cur.next
+                continue
+            tmp=dummy
+            while cur.val>tmp.next.val:
+                tmp=tmp.next
+            prev.next=cur.next
+            cur.next=tmp.enxt
+            tmp.next=cur
+            cur=prev.next
+        return dummy.next
+            
+    
+    
+                
+
 
 
 
@@ -87,10 +140,13 @@ linkedlist.add(4)
 linkedlist.add(10)
 linkedlist.add(12)
 linkedlist.add(22)
-#linkedlist.printlist()
-#linkedlist.printlast()
+linkedlist.add(10)
+linkedlist.printlist()
+linkedlist.printlast()
+print(linkedlist.repeatCheck())
 #print(linkedlist.reverseList(22)
 
-linkedlist.removeElements(22,12)
-linkedlist.printlist()
+#linkedlist.removeElements(22,12)
+#print(linkedlist.createDict())
+#linkedlist.printlist()
 #C:/Users/npicc/Documents/python/python.exe c:/Users/npicc/Documents/Coding/projects/data_structures/linkedlist.py
